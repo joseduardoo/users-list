@@ -10,14 +10,25 @@ function App() {
   const showEmployees = (noEmployees) => {
     setUsers(noEmployees);
   };
-  //funcion que se pasa al nuevo componente para modificar la lista de users, agrega un nuevo user
+  //funcion que se pasa al nuevo componente para modificar la lista de users, agrega un nuevo user:
   const handleEmployeAdd = (newEmployee) => {
     setUsers(users.concat(newEmployee))
+  };
+  //funcion que se pasa al nuevo componente para eliminar un user:
+  const handleEmployeeRemove = (deletedEmployee) => {
+    let newUsersList = users.slice();
+    newUsersList.splice(deletedEmployee,1);
+    setUsers(newUsersList);
   };
 
   return (
     <div className="App">
-      <UsersList employees={users} showEmployees={showEmployees} usersNumber={3} onEmployeeAdd={handleEmployeAdd}/>
+      <UsersList 
+        employees={users} 
+        showEmployees={showEmployees} 
+        onEmployeeAdd={handleEmployeAdd}
+        onEmployeeRemove={handleEmployeeRemove}
+      />
     </div>
   );
 };
