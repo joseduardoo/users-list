@@ -1,31 +1,21 @@
 
 import React from "react";
-import { useState } from 'react';
-import UsersList from "./components.js";
+import UsersList from "./UsersList.js";
 
 function App() {
-  //Estado que se van a pasar/propagar al nuevo componente, representan la lista de usuarios:
-  const [users, setUsers] = useState([0]);
-  //Funcion que muestra los users preestablecidos (que estan en funcion de usersNumber)
-  const showEmployees = (noEmployees) => {
-    setUsers(noEmployees);
-  };
-  //funcion que se pasa al nuevo componente para modificar la lista de users, agrega un nuevo user:
+
   const handleEmployeAdd = (newEmployee) => {
-    setUsers(users.concat(newEmployee))
+    console.log(`Employee: "${newEmployee.name}" has been added`)
   };
-  //funcion que se pasa al nuevo componente para eliminar un user:
+
   const handleEmployeeRemove = (deletedEmployee) => {
-    let newUsersList = users.slice();
-    newUsersList.splice(deletedEmployee,1);
-    setUsers(newUsersList);
+    console.log(`Employee: "${deletedEmployee.name}" has been removed`)
   };
 
   return (
     <div className="App">
       <UsersList 
-        employees={users} 
-        showEmployees={showEmployees} 
+        usersNumber={3}
         onEmployeeAdd={handleEmployeAdd}
         onEmployeeRemove={handleEmployeeRemove}
       />
